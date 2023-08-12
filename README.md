@@ -1,6 +1,6 @@
 ## He!
 
-### This project is made with Telegram bot 
+### This project is made with Django site
 ### There you can find little but 
 ### I can definitely say for beginners it can help
 
