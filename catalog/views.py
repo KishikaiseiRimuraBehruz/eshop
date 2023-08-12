@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from . import models
 from . import handlers
 # from django.http import HttpResponse
@@ -32,7 +33,7 @@ def get_category_products(request, pk):
     # указать html
     return render(request, 'category.html', context)
 
-def get_exact_product(request,name, pk ):
+def get_exact_product(request, name, pk):
     # Находим из базы продукт
     exact_product = models.Product.objects.get(name=name,id=pk)
 
@@ -41,8 +42,8 @@ def get_exact_product(request,name, pk ):
     context = {"product": exact_product}
 
 
-    # перелайотса на html
-    return render(request, 'products.html', context)
+    # передайотса на html
+    return render(request, 'product.html', context)
 
 def add_pr_to_cart(request, pk):
     # Получить выбранное количество продукта из front части
@@ -82,7 +83,7 @@ def complete_order(request):
         for cart in user_cart:
             result_message += f'Название товара: {cart.user_product}' \
                             f'Количество{cart.user_product_quantity}\n'
-            total += cart.user_product.price * cart.user_product_amount
+            total += cart.user_product.price * cart.user_product_quantity
         result_message += f'\n\nИтог: {total}'
         handlers.bot.send_message(652494911, result_message)
         user_cart.delete()

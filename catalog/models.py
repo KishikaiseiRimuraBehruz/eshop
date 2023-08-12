@@ -13,7 +13,6 @@ class Category(models.Model):
 
 class Product(models.Model):
     object = models.Model
-
     name = models.CharField(max_length=60)
     description = models.CharField(max_length=150)
     product_amount = models.IntegerField()
